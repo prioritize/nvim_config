@@ -1,12 +1,20 @@
 local plugins = {
   {
+    'Civitasv/cmake-tools.nvim',
+    opts = function()
+      require "configs.cmake-tools"
+    end
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function()
-      local sources = {
-        null_ls.builtins.formatting.clang_format
-      }
-      return require "configs.null-ls"
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.clang_format,
+        }
+      })
     end
   },
   {
